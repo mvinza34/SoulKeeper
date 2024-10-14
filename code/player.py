@@ -1,8 +1,8 @@
 class Player:
-    def __init__(self, name, starting_souls=1000):
+    def __init__(self, name, total_souls):
         
-        self.name = name
-        self.souls = starting_souls
+        self.name = name # Name of the player
+        self.total_souls = total_souls # Starting amount of souls
 
         # Define the attributes with initial levels
         self.attributes = {
@@ -16,7 +16,10 @@ class Player:
             "Faith": 1
             }
 
+    def level_up(self):
         self.base_cost = 100 # Base cost for leveling up any attribute
+
+
 
 
 
