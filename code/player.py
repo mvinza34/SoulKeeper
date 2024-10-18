@@ -30,5 +30,16 @@ class Player:
         else:
             print("Not enough souls!")
 
+    def show_status(self):
+        # Show current souls and attribute levels
+        print(f"\n{self.name}'s current status:")
+        print(f"Souls: {self.total_souls}")
+        for attribute, level in self.attributes.items():
+            print(f"{attribute}: {level}")
+
+    def get_total_level(self):
+        # Show the overall level of the player
+        return sum(self.attributes.values())
+
 
 
