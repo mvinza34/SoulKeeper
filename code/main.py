@@ -6,9 +6,36 @@ class Main:
         
     def menu(self):
         print("\n--- SoulKeeper ---")
+        print("1. Level up attribute")
+        print("2. View current stats")
+        print("3. Save progress")
+        print("4. Load progress")
+        print("5. Exit")
 
     def run(self):
-        self.menu()
+        while True: 
+            self.menu()
+
+            self.choice = input("Choose an option: ")
+
+            if self.choice == '1':
+                self.attribute = input("Enter an attribute to level up (Vitality, Attunment, Endurance, Strength, Dexterity, Resistance, Intelligence, Faith): ")
+                if self.attribute in self.player.attributes:
+                    self.player.level_up(self.attribute)
+                else:
+                    print("Invaild attribute!")
+            elif self.choice == '2':
+                print(f"Current Stats: {self.player.attributes}")
+                print(f"Total Souls: {self.player.total_souls}")
+            elif self.choice == '3':
+                pass
+            elif self.choice == '4':
+                pass
+            elif self.choice == '5':
+                print("Farewell, Chosen Undead! Don't you dare go hollow!")
+                break
+            else:
+                print("Invaild option!")
 
 if __name__== '__main__':
     main = Main()
