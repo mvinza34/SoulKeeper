@@ -25,8 +25,7 @@ class Main:
                 else:
                     print("Invaild attribute!")
             elif self.choice == '2':
-                print(f"Current Stats: {self.player.attributes}")
-                print(f"Total Souls: {self.player.total_souls}")
+                self.player.show_status()
             elif self.choice == '3':
                 pass
             elif self.choice == '4':
