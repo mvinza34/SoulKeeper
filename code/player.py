@@ -1,3 +1,6 @@
+import json # For saving and loading progress
+import os # For deleting progress
+
 class Player:
     def __init__(self, name, total_souls):
         
@@ -40,6 +43,33 @@ class Player:
     def get_total_level(self):
         # Show the overall level of the player
         return sum(self.attributes.values())
+
+    def save_progress(self, filename="save.json"):
+        data = {
+            "attributes": self.attributes,
+            "total_souls": self.total_souls
+        }
+        # Saves the player's progress into a JSON file
+        with open(filename, 'w') as f:
+            json.dump(data, f) 
+        print("Progress saved!")
+
+    def load_progress(self, filename="save.json"):
+        # Reads the JSON file and loads the saved progress into the player's attributes and souls
+        with open(filename, 'r') as f:
+             data = json.load(f)
+             self.attributes = data["attributes"]
+             self.total_souls = data["total_souls"]
+        print("Progress loaded!")
+
+    def delete_progress(self):
+        # Erases the json file so that the player can start new
+        if os.path.exists("save.json"):
+            os.remove("save.json")
+            print("Progress deleted!")
+        else:
+            print("The file does not exist")
+
 
 
 
