@@ -7,68 +7,90 @@ class Player:
         self.name = name # Name of the player
         self.total_souls = total_souls # Starting amount of souls
 
-        # Define the attributes with initial levels
-        self.attributes = {
-            "Vitality": 1,
-            "Attunment": 1,
-            "Endurance": 1,
-            "Strength": 1,
-            "Dexterity": 1,
-            "Resistance": 1, 
-            "Intelligence": 1,
-            "Faith": 1
-            }
+        # Define the classes with starting level and attributes
+        self.classes = {
+            "Warrior": {"Level": 4, "Vitality": 11, "Attunment": 8, "Endurance": 12, "Strength": 13, "Dexterity": 13, "Resistance": 11,  "Intelligence": 9, "Faith": 9},
+            "Knight": {"Level": 5, "Vitality": 14, "Attunment": 10, "Endurance": 10, "Strength": 11, "Dexterity": 11, "Resistance": 10,  "Intelligence": 9, "Faith": 11},
+            "Wanderer": {"Level": 3, "Vitality": 10, "Attunment": 11, "Endurance": 10, "Strength": 10, "Dexterity": 14, "Resistance": 12,  "Intelligence": 11, "Faith": 8},
+            "Thief": {"Level": 5, "Vitality": 9, "Attunment": 11, "Endurance": 9, "Strength": 9, "Dexterity": 15, "Resistance": 10,  "Intelligence": 12, "Faith": 11},
+            "Bandit": {"Level": 4, "Vitality": 12, "Attunment": 8, "Endurance": 14, "Strength": 14, "Dexterity": 9, "Resistance": 11,  "Intelligence": 8, "Faith": 10},
+            "Hunter": {"Level": 4, "Vitality": 11, "Attunment": 9, "Endurance": 11, "Strength": 12, "Dexterity": 14, "Resistance": 11,  "Intelligence": 9, "Faith": 9},
+            "Sorcerer": {"Level": 3, "Vitality": 8, "Attunment": 15, "Endurance": 8, "Strength": 9, "Dexterity": 11, "Resistance": 8,  "Intelligence": 15, "Faith": 8},
+            "Pyromancer": {"Level": 1, "Vitality": 10, "Attunment": 12, "Endurance": 11, "Strength": 12, "Dexterity": 9, "Resistance": 12,  "Intelligence": 10, "Faith": 8},
+            "Cleric": {"Level": 2, "Vitality": 11, "Attunment": 11, "Endurance": 9, "Strength": 12, "Dexterity": 8, "Resistance": 11,  "Intelligence": 8, "Faith": 14},
+            "Deprived": {"Level": 6, "Vitality": 11, "Attunment": 11, "Endurance": 11, "Strength": 11, "Dexterity": 11, "Resistance": 11,  "Intelligence": 11, "Faith": 11}
+        }
 
-    def level_up(self, attribute, base_cost=100, scaling_factor=1.2):
+    def increase_attribute_level(self, selected_class, attribute, base_cost=50, scaling_factor=1.2):
+        # Get the current level of the attribute in the chosen class
+        current_level = selected_class[attribute]
+
         # Calculate how many souls it costs to level up
-        current_level = self.attributes[attribute]
         cost = int(base_cost * (current_level ** scaling_factor))
 
         # Spend souls to level up the desired attribute
         if self.total_souls >= cost:
-            self.attributes[attribute] += 1
+            selected_class[attribute] += 1
+            selected_class["Level"] += 1  # Increment the level by 1
             self.total_souls -= cost
-            print(f"{attribute} leveled up to {self.attributes[attribute]}!")
+            print(f"You spent {cost} souls to level up.")
+            print(f"{attribute} leveled up to {selected_class[attribute]}!")
+            print(f"Your soul level is now {selected_class['Level']}!")
             print(f"Remaining souls: {self.total_souls}")
         else:
             print("Not enough souls!")
 
-    def show_status(self):
-        # Show current souls and attribute levels
-        print(f"\n{self.name}'s current status:")
-        print(f"Souls: {self.total_souls}")
-        for attribute, level in self.attributes.items():
-            print(f"{attribute}: {level}")
+    def level_up(self):
+        self.starting_class_name = input("Choose a starting class: ").strip()
+        if self.starting_class_name in self.classes:
+            print(f"You chose to start as a {self.starting_class_name}.")
+            self.selected_class = self.classes[self.starting_class_name]
+            print(f"Your current soul level is {self.selected_class['Level']}.")
 
-    def get_total_level(self):
-        # Show the overall level of the player
-        return sum(self.attributes.values())
-
-    def save_progress(self, filename="save.json"):
-        data = {
-            "attributes": self.attributes,
-            "total_souls": self.total_souls
-        }
-        # Saves the player's progress into a JSON file
-        with open(filename, 'w') as f:
-            json.dump(data, f) 
-        print("Progress saved!")
-
-    def load_progress(self, filename="save.json"):
-        # Reads the JSON file and loads the saved progress into the player's attributes and souls
-        with open(filename, 'r') as f:
-             data = json.load(f)
-             self.attributes = data["attributes"]
-             self.total_souls = data["total_souls"]
-        print("Progress loaded!")
-
-    def delete_progress(self):
-        # Erases the json file so that the player can start new
-        if os.path.exists("save.json"):
-            os.remove("save.json")
-            print("Progress deleted!")
+        self.attribute = input("Enter an attribute to level up (Vitality, Attunment, Endurance, Strength, Dexterity, Resistance, Intelligence, Faith): ")
+        if self.attribute in self.selected_class:
+            self.increase_attribute_level(self.selected_class, self.attribute)
         else:
-            print("The file does not exist")
+            print("Invaild attribute!")
+
+    def show_status(self):
+        # Display the class, levels, atrributes, and current souls
+        print(f"\n{self.name}'s current status:")
+        print(f"Class: {self.starting_class_name}")
+        for stat, value in self.selected_class.items():
+            print(f"{stat}: {value}")
+        print(f"Souls: {self.total_souls}")
+
+
+    # def get_total_level(self):
+    #     # Show the overall level of the player
+    #     return sum(self.attributes.values())
+
+    # def save_progress(self, filename="save.json"):
+    #     data = {
+    #         "attributes": self.attributes,
+    #         "total_souls": self.total_souls
+    #     }
+    #     # Saves the player's progress into a JSON file
+    #     with open(filename, 'w') as f:
+    #         json.dump(data, f) 
+    #     print("Progress saved!")
+
+    # def load_progress(self, filename="save.json"):
+    #     # Reads the JSON file and loads the saved progress into the player's attributes and souls
+    #     with open(filename, 'r') as f:
+    #          data = json.load(f)
+    #          self.attributes = data["attributes"]
+    #          self.total_souls = data["total_souls"]
+    #     print("Progress loaded!")
+
+    # def delete_progress(self):
+    #     # Erases the json file so that the player can start new
+    #     if os.path.exists("save.json"):
+    #         os.remove("save.json")
+    #         print("Progress deleted!")
+    #     else:
+    #         print("The file does not exist")
 
 
 
