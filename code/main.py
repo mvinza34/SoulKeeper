@@ -30,7 +30,10 @@ class Main:
                 else:
                     print("You must first choose a class before leveling up!")
             elif self.choice == '3':
-                self.player.show_status()
+                if self.player.check_for_class == True:
+                    self.player.show_status()
+                else:
+                    print("You must first choose a class before displaying your current status!")
             elif self.choice == '4':
                 pass
                 #self.player.save_progress()
