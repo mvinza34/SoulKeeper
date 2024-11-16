@@ -2,8 +2,35 @@ from player import Player
 
 class Main:
     def __init__(self):
-        self.player = Player("Marlon",total_souls=3000) # Start with 3000 souls
-        
+        print("\n--- SoulKeeper ---")
+        self.start = True
+        self.access = False
+
+    def start_app(self):
+        # Prompt the user to enter a valid name and starting number of souls before proceeding
+        while self.start:
+            self.player_name = input("Welcome, Chosen Undead! Please enter your name: ").strip()
+
+            if not self.player_name:
+                print("You must enter a name.")
+                continue
+
+            try:
+                self.player_souls = int(input("Enter how many souls you have: "))
+                if self.player_souls < 0:
+                    print("Souls must be a positive integer.")
+                    continue
+                self.start = False 
+            except ValueError:
+                print("You must enter a valid integer for souls.")
+
+    def access_menu(self):
+        # Grants user access to main menu 
+        self.access = True
+        self.player = Player(self.player_name, self.player_souls)
+        print(f"Welcome, {self.player_name}, to SoulKeeper! You start with {self.player_souls} souls!")
+        self.choices()
+
     def menu(self):
         print("1. Choose class")
         print("2. Level up attribute")
@@ -13,11 +40,8 @@ class Main:
         print("6. Delete progress")
         print("7. Exit")
 
-    def run(self):
-        print("\n--- SoulKeeper ---")
-        print("Welcome, Chosen Undead!")
-
-        while True: 
+    def choices(self):
+        while self.access == True: 
             self.menu()
 
             self.choice = input("Choose an option: ")
@@ -48,10 +72,14 @@ class Main:
                 # else:
                 #     print("Progress kept!")
             elif self.choice == '7':
-                print("Farewell, Chosen Undead! Don't you dare go hollow!")
-                break
+                print(f"Farewell, {self.player_name}! Don't you dare go hollow!")
+                self.access = False
             else:
                 print("Invaild option!")
+
+    def run(self):
+      self.start_app()
+      self.access_menu()
 
 if __name__== '__main__':
     main = Main()
