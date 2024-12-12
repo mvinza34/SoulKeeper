@@ -24,6 +24,17 @@ class Player:
         # Checks if the user chose a starting class
         self.check_for_class = False
 
+    def add_souls(self, souls_to_add):
+        try:
+            if souls_to_add < 0:
+                print("Souls must be a positive integer.")
+            else:
+                print(f"Current souls: {self.total_souls}, Added souls: {souls_to_add}")
+                self.total_souls += souls_to_add
+                print(f"Souls updated! Total souls: {self.total_souls}")
+        except ValueError:
+            print("You must enter a valid integer for souls.")
+
     def increase_attribute_level(self, selected_class, attribute, base_cost=50, scaling_factor=1.2):
         # Get the current level of the attribute in the chosen class
         current_level = selected_class[attribute]
