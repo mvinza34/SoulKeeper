@@ -28,13 +28,13 @@ class Player:
     def add_souls(self, souls_to_add):
         try:
             if souls_to_add < 0:
-                print("Souls must be a positive integer.")
+                print("Souls must be a positive integer.\n")
             else:
                 print(f"Current souls: {self.total_souls}, Added souls: {souls_to_add}")
                 self.total_souls += souls_to_add
-                print(f"Souls updated! Total souls: {self.total_souls}")
+                print(f"Souls updated! Total souls: {self.total_souls}\n")
         except ValueError:
-            print("You must enter a valid integer for souls.")
+            print("You must enter a valid integer for souls.\n")
 
     def increase_attribute_level(self, selected_class, attribute, base_cost=50, scaling_factor=1.2):
         # Get the current level of the attribute in the chosen class
@@ -52,34 +52,34 @@ class Player:
             print(f"You spent {cost} souls to level up.")
             print(f"{attribute} leveled up to {selected_class[attribute]}!")
             print(f"Your soul level is now {selected_class['Level']}!")
-            print(f"Remaining souls: {self.total_souls}")
+            print(f"Remaining souls: {self.total_souls}\n")
         else:
-            print("Not enough souls!")
+            print("Not enough souls!\n")
 
     def choose_class(self):
         self.starting_class_name = input("Choose a starting class: ").strip()
         if self.starting_class_name in self.classes:
             print(f"You chose to start as a {self.starting_class_name}.")
             self.selected_class = self.classes[self.starting_class_name]
-            print(f"Your current soul level is {self.selected_class['Level']}.")
+            print(f"Your current soul level is {self.selected_class['Level']}.\n")
             self.check_for_class = True
         else:
-            print("Invalid class!")
+            print("Invalid class!\n")
 
     def level_up(self):
         self.attribute = input("Enter an attribute to level up (Vitality, Attunement, Endurance, Strength, Dexterity, Resistance, Intelligence, Faith): ")
         if self.attribute in self.selected_class:
             self.increase_attribute_level(self.selected_class, self.attribute)
         else:
-            print("Invaild attribute!")
+            print("Invaild attribute!\n")
 
     def show_status(self):
         # Display the class, current level, current atrributes, and current souls
-        print(f"\n{self.name}'s current status:")
+        print(f"{self.name}'s current status:\n")
         print(f"Class: {self.starting_class_name}")
         for stat, value in self.selected_class.items():
             print(f"{stat}: {value}")
-        print(f"Souls: {self.total_souls}")
+        print(f"Souls: {self.total_souls}\n")
 
     def show_souls_spent(self):
         print(f"Total Souls Spent: {self.total_souls_spent}\n")

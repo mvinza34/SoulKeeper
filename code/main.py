@@ -2,7 +2,7 @@ from player import Player
 
 class Main:
     def __init__(self):
-        print("\n--- SoulKeeper ---")
+        print("\n------ SoulKeeper ------\n")
         self.start = True
         self.access = False
 
@@ -12,23 +12,23 @@ class Main:
             self.player_name = input("Welcome, Chosen Undead! Please enter your name: ").strip()
 
             if not self.player_name:
-                print("You must enter a name.")
+                print("You must enter a name.\n")
                 continue
 
             try:
                 self.player_souls = int(input("Enter how many souls you have: "))
                 if self.player_souls < 0:
-                    print("Souls must be a positive integer.")
+                    print("Souls must be a positive integer.\n")
                     continue
                 self.start = False 
             except ValueError:
-                print("You must enter a valid integer for souls.")
+                print("You must enter a valid integer for souls.\n")
 
     def access_menu(self):
         # Grants user access to main menu 
         self.access = True
         self.player = Player(self.player_name, self.player_souls)
-        print(f"Welcome, {self.player_name}, to SoulKeeper! You start with {self.player_souls} souls!")
+        print(f"Welcome, {self.player_name}, to SoulKeeper! You start with {self.player_souls} souls!\n")
         self.choices()
 
     def menu(self):
@@ -40,7 +40,7 @@ class Main:
         print("6. Save progress")
         print("7. Load progress")
         print("8. Delete progress")
-        print("9. Exit")
+        print("9. Exit\n")
 
     def choices(self):
         while self.access == True: 
@@ -54,12 +54,12 @@ class Main:
                 if self.player.check_for_class == True:
                     self.player.level_up()
                 else:
-                    print("You must first choose a class before leveling up!")
+                    print("You must first choose a class before leveling up!\n")
             elif self.choice == '3':
                 if self.player.check_for_class == True:
                     self.player.show_status()
                 else:
-                    print("You must first choose a class before displaying your current status!")
+                    print("You must first choose a class before displaying your current status!\n")
             elif self.choice == '4':
                 self.more_souls = int(input("Enter how many souls you wish to add: "))
                 self.player.add_souls(self.more_souls)
@@ -79,10 +79,10 @@ class Main:
                 # else:
                 #     print("Progress kept!")
             elif self.choice == '9':
-                print(f"Farewell, {self.player_name}! Don't you dare go hollow!")
+                print(f"Farewell, {self.player_name}! Don't you dare go hollow!\n")
                 self.access = False
             else:
-                print("Invaild option!")
+                print("Invaild option!\n")
 
     def run(self):
       self.start_app()
