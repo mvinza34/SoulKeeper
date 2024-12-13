@@ -6,6 +6,7 @@ class Player:
         
         self.name = name # Name of the player
         self.total_souls = total_souls # Starting amount of souls
+        self.total_souls_spent = 0 # Tracks total amount of souls spent
 
         # Define the classes with starting level and attributes
         self.classes = {
@@ -47,6 +48,7 @@ class Player:
             selected_class[attribute] += 1
             selected_class["Level"] += 1  # Increment the level by 1
             self.total_souls -= cost
+            self.total_souls_spent += cost # Keep track of spent souls
             print(f"You spent {cost} souls to level up.")
             print(f"{attribute} leveled up to {selected_class[attribute]}!")
             print(f"Your soul level is now {selected_class['Level']}!")
@@ -78,6 +80,9 @@ class Player:
         for stat, value in self.selected_class.items():
             print(f"{stat}: {value}")
         print(f"Souls: {self.total_souls}")
+
+    def show_souls_spent(self):
+        print(f"Total Souls Spent: {self.total_souls_spent}\n")
 
     # def save_progress(self, filename="save.json"):
     #     data = {

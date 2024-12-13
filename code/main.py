@@ -36,10 +36,11 @@ class Main:
         print("2. Level up attribute")
         print("3. View current stats")
         print("4. Add more souls")
-        print("5. Save progress")
-        print("6. Load progress")
-        print("7. Delete progress")
-        print("8. Exit")
+        print("5. Show total souls spent")
+        print("6. Save progress")
+        print("7. Load progress")
+        print("8. Delete progress")
+        print("9. Exit")
 
     def choices(self):
         while self.access == True: 
@@ -63,19 +64,21 @@ class Main:
                 self.more_souls = int(input("Enter how many souls you wish to add: "))
                 self.player.add_souls(self.more_souls)
             elif self.choice == '5':
-                pass
-                #self.player.save_progress()
+                self.player.show_souls_spent()
             elif self.choice == '6':
                 pass
-                #self.player.load_progress()
+                #self.player.save_progress()
             elif self.choice == '7':
+                pass
+                #self.player.load_progress()
+            elif self.choice == '8':
                 pass
                 # erase = input("Do you wish to start all over again, Chosen Undead? Enter 'Y' for yes or any key for no. ")
                 # if erase == "Y":
                 #     self.player.delete_progress()
                 # else:
                 #     print("Progress kept!")
-            elif self.choice == '8':
+            elif self.choice == '9':
                 print(f"Farewell, {self.player_name}! Don't you dare go hollow!")
                 self.access = False
             else:
