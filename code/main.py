@@ -42,6 +42,48 @@ class Main:
         print("8. Delete progress")
         print("9. Exit\n")
 
+    def menu_choice_1(self):
+        self.player.choose_class()
+
+    def menu_choice_2(self):
+        if self.player.check_for_class == True:
+            self.player.level_up()
+        else:
+            print("You must first choose a class before leveling up!\n")
+
+    def menu_choice_3(self):
+        if self.player.check_for_class == True:
+            self.player.show_status()
+        else:
+            print("You must first choose a class before displaying your current status!\n")
+
+    def menu_choice_4(self):
+        self.more_souls = int(input("Enter how many souls you wish to add: "))
+        self.player.add_souls(self.more_souls)
+
+    def menu_choice_5(self):
+        self.player.show_souls_spent()
+
+    def menu_choice_6(self):
+        pass
+        #self.player.save_progress()
+
+    def menu_choice_7(self):
+        pass
+        #self.player.load_progress()
+
+    def menu_choice_8(self):
+        pass
+        # erase = input("Do you wish to start all over again, Chosen Undead? Enter 'Y' for yes or any key for no. ")
+        # if erase == "Y":
+        #     self.player.delete_progress()
+        # else:
+        #     print("Progress kept!")
+
+    def menu_choice_9(self):
+        print(f"Farewell, {self.player_name}! Don't you dare go hollow!\n")
+        self.access = False
+
     def choices(self):
         while self.access == True: 
             self.menu()
@@ -49,38 +91,23 @@ class Main:
             self.choice = input("Choose an option: ")
 
             if self.choice == '1':
-                self.player.choose_class()
+                self.menu_choice_1()
             elif self.choice == '2':
-                if self.player.check_for_class == True:
-                    self.player.level_up()
-                else:
-                    print("You must first choose a class before leveling up!\n")
+                self.menu_choice_2()
             elif self.choice == '3':
-                if self.player.check_for_class == True:
-                    self.player.show_status()
-                else:
-                    print("You must first choose a class before displaying your current status!\n")
+                self.menu_choice_3()
             elif self.choice == '4':
-                self.more_souls = int(input("Enter how many souls you wish to add: "))
-                self.player.add_souls(self.more_souls)
+                self.menu_choice_4()
             elif self.choice == '5':
-                self.player.show_souls_spent()
+                self.menu_choice_5()
             elif self.choice == '6':
-                pass
-                #self.player.save_progress()
+                self.menu_choice_6()
             elif self.choice == '7':
-                pass
-                #self.player.load_progress()
+                self.menu_choice_7()
             elif self.choice == '8':
-                pass
-                # erase = input("Do you wish to start all over again, Chosen Undead? Enter 'Y' for yes or any key for no. ")
-                # if erase == "Y":
-                #     self.player.delete_progress()
-                # else:
-                #     print("Progress kept!")
+                self.menu_choice_8()
             elif self.choice == '9':
-                print(f"Farewell, {self.player_name}! Don't you dare go hollow!\n")
-                self.access = False
+                self.menu_choice_9()
             else:
                 print("Invaild option!\n")
 
