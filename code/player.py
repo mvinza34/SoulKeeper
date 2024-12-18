@@ -1,6 +1,11 @@
 import json # For saving and loading progress
 import os # For deleting progress
 
+from rich.console import Console
+from rich.table import Table
+
+console = Console()
+
 class Player:
     def __init__(self, name, total_souls):
         
@@ -30,9 +35,9 @@ class Player:
             if souls_to_add < 0:
                 print("Souls must be a positive integer.\n")
             else:
-                print(f"Current souls: {self.total_souls}, Added souls: {souls_to_add}")
+                console.print(f"Current souls: {self.total_souls} :fire:, Added souls: {souls_to_add} :fire:")
                 self.total_souls += souls_to_add
-                print(f"Souls updated! Total souls: {self.total_souls}\n")
+                console.print(f"Souls updated! Total souls: {self.total_souls} :fire:\n")
         except ValueError:
             print("You must enter a valid integer for souls.\n")
 
@@ -49,10 +54,10 @@ class Player:
             selected_class["Level"] += 1  # Increment the level by 1
             self.total_souls -= cost
             self.total_souls_spent += cost # Keep track of spent souls
-            print(f"You spent {cost} souls to level up.")
-            print(f"{attribute} leveled up to {selected_class[attribute]}!")
-            print(f"Your soul level is now {selected_class['Level']}!")
-            print(f"Remaining souls: {self.total_souls}\n")
+            console.print(f"You spent {cost} souls to level up.")
+            console.print(f"{attribute} leveled up to {selected_class[attribute]}!")
+            console.print(f"Your soul level is now {selected_class['Level']}!")
+            console.print(f"Remaining souls: {self.total_souls}\n")
         else:
             print("Not enough souls!\n")
 
@@ -61,7 +66,7 @@ class Player:
         if self.starting_class_name in self.classes:
             print(f"You chose to start as a {self.starting_class_name}.")
             self.selected_class = self.classes[self.starting_class_name]
-            print(f"Your current soul level is {self.selected_class['Level']}.\n")
+            console.print(f"Your current soul level is {self.selected_class['Level']}.\n")
             self.check_for_class = True
         else:
             print("Invalid class!\n")
@@ -75,14 +80,19 @@ class Player:
 
     def show_status(self):
         # Display the class, current level, current atrributes, and current souls
-        print(f"{self.name}'s current status:\n")
-        print(f"Class: {self.starting_class_name}")
+        status_table = Table(title=f"{self.name}'s Current Status:")
+        status_table.add_column("Stat", style="cyan")
+        status_table.add_column("Value", justify='right')
+        status_table.add_row("Class", self.starting_class_name)
+        
         for stat, value in self.selected_class.items():
-            print(f"{stat}: {value}")
-        print(f"Souls: {self.total_souls}\n")
+            status_table.add_row(stat, str(value))
+
+        status_table.add_row("Souls", str(self.total_souls))
+        console.print(status_table)
 
     def show_souls_spent(self):
-        print(f"Total Souls Spent: {self.total_souls_spent}\n")
+        console.print(f"Total Souls Spent: {self.total_souls_spent} :fire:\n")
 
     # def save_progress(self, filename="save.json"):
     #     data = {
