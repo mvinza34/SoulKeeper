@@ -1,8 +1,8 @@
 import json # For saving and loading progress
 import os # For deleting progress
 
-from rich.console import Console
-from rich.table import Table
+from rich.console import Console # For console output (i.e., colors, emojis, etc.)
+from rich.table import Table # For creating tables in the console
 
 console = Console()
 
@@ -13,7 +13,7 @@ class Player:
         self.total_souls = total_souls # Starting amount of souls
         self.total_souls_spent = 0 # Tracks total amount of souls spent
 
-        # Define the classes with starting level and attributes
+        # Define the classes with starting levels, attributes, and perks
         self.classes = {
             "Warrior": {"Level": 4,
                        "Vitality": 11, "Attunement": 8, "Endurance": 12, "Strength": 13, "Dexterity": 13, "Resistance": 11,  "Intelligence": 9, "Faith": 9,
@@ -57,7 +57,10 @@ class Player:
                          }
         }
 
-        # Checks if the user chose a starting class
+        # Define the achievements that the user must unlock
+        self.achievements = {"Create a Class": False, "Reach Level 10": False, "Spend 1,000 Souls": False, "Spend 10,000 Souls": False}
+
+        # Check if the user chose a starting class
         self.check_for_class = False
 
     def add_souls(self, souls_to_add):
@@ -86,6 +89,8 @@ class Player:
             selected_class["Level"] += 1  # Increment the level by 1
             self.total_souls -= cost
             self.total_souls_spent += cost # Keep track of spent souls
+            self.check_achievements()
+
             console.print(f"You spent {cost} souls to level up.")
             console.print(f"{attribute} leveled up to {selected_class[attribute]}!")
             console.print(f"Your soul level is now {selected_class['Level']}!")
@@ -100,6 +105,7 @@ class Player:
             self.selected_class = self.classes[self.starting_class_name]
             console.print(f"Your current soul level is {self.selected_class['Level']}.\n")
             self.check_for_class = True
+            self.check_achievements()
         else:
             print("Invalid class!\n")
 
@@ -111,7 +117,7 @@ class Player:
             print("Invaild attribute!\n")
 
     def show_status(self):
-        # Display the class, current level, current atrributes, and current souls
+        # Create a table displaying the class, current level, current atrributes, and current souls
         status_table = Table(title=f"{self.name}'s Current Status:")
         status_table.add_column("Stat", style="cyan")
         status_table.add_column("Value", justify='right')
@@ -125,7 +131,7 @@ class Player:
          
         console.print(status_table)
 
-        # Display the perks depending on the class
+        # Create a table displaying all the perks depending on the class
         if "Perks" in self.selected_class:
             perks_table = Table(title="Perks", show_header=True, header_style="bold magenta")
             perks_table.add_column("Perk", style="green")
@@ -138,6 +144,48 @@ class Player:
 
     def show_souls_spent(self):
         console.print(f"Total Souls Spent: {self.total_souls_spent} :fire:\n")
+
+    def unlock_achievement(self, name):
+        if name in self.achievements and not self.achievements[name]:
+            self.achievements[name] = True
+            console.print(f":tada: Achievement Unlocked: {name}!\n")
+
+    def check_achievements(self):
+        # General Achievements
+        if self.check_for_class == True:
+            self.unlock_achievement("Create a Class")
+
+        # Leveling Achievements
+        if self.selected_class["Level"] >= 10:
+            self.unlock_achievement("Reach Level 10")
+
+        # Soul Spending Achievements
+        if self.total_souls_spent >= 1000:
+            self.unlock_achievement("Spend 1,000 Souls")
+        if self.total_souls_spent >= 10000:
+            self.unlock_achievement("Spend 10,00 Souls")
+
+    def view_achievements(self):
+        # Group the achievements by category
+        categories = {
+            "General Milestones": {"Create a Class"},
+            "Leveling Milestones": {"Reach Level 10"},
+            "Soul Spending": {"Spend 1,000 Souls", "Spend 10,000 Souls"}
+            }
+
+        # Create a table displaying all achievements, locked or unlocked
+        achievements_table = Table(title=":trophy: Achievements :trophy:", show_header=True, header_style="bold magenta")
+        achievements_table.add_column("Category", style="gold1", justify="left")
+        achievements_table.add_column("Achievement", style="cyan", justify="left")
+        achievements_table.add_column("Status", style="green", justify="center")
+
+        for category, achievements in categories.items():
+            for achievement in achievements:
+                status = ":heavy_check_mark: Unlocked" if self.achievements.get(achievement, False) else ":x: Locked"
+                achievements_table.add_row(category, achievement, status)
+                category = "" # Ensures that the category is only displayed once
+        
+        console.print(achievements_table)
 
     # def save_progress(self, filename="save.json"):
     #     data = {

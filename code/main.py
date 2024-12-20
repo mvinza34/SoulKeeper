@@ -1,4 +1,4 @@
-from rich.console import Console
+from rich.console import Console # For console output (i.e., colors, emojis, etc.)
 from player import Player
 
 console = Console()
@@ -28,7 +28,7 @@ class Main:
                 print("You must enter a valid integer for souls.\n")
 
     def access_menu(self):
-        # Grants user access to main menu 
+        # Grant user access to main menu 
         self.access = True
         self.player = Player(self.player_name, self.player_souls)
         console.print(f"Welcome, {self.player_name}, to SoulKeeper! You start with {self.player_souls} souls :fire:!\n")
@@ -36,14 +36,15 @@ class Main:
 
     def menu(self):
         console.print("[dodger_blue1]1. Choose class :crossed_swords:")
-        console.print("[gold1]2. Level up attribute :muscle:")
+        console.print("[green]2. Level up attribute :muscle:")
         console.print("[white]3. View current stats :scroll:")
         console.print("[turquoise2]4. Add more souls :heavy_plus_sign::fire:")
-        console.print("[magenta]5. Show total souls spent :fire:")
-        console.print("[bright_green]6. Save progress :file_folder:")
-        console.print("[cyan]7. Load progress :unlock:")
-        console.print("[bright_yellow]8. Delete progress :wastebasket:")
-        console.print("[bright_red]9. Exit :coffin:\n")
+        console.print("[bright_magenta]5. Show total souls spent :fire:")
+        console.print("[gold1]6. View achievements :trophy:")
+        console.print("[bright_green]7. Save progress :file_folder:")
+        console.print("[cyan]8. Load progress :unlock:")
+        console.print("[bright_yellow]9. Delete progress :wastebasket:")
+        console.print("[bright_red]10. Exit :coffin:\n")
 
     def menu_choice_1(self):
         self.player.choose_class()
@@ -68,14 +69,17 @@ class Main:
         self.player.show_souls_spent()
 
     def menu_choice_6(self):
-        pass
-        #self.player.save_progress()
+        self.player.view_achievements()
 
     def menu_choice_7(self):
         pass
-        #self.player.load_progress()
+        #self.player.save_progress()
 
     def menu_choice_8(self):
+        pass
+        #self.player.load_progress()
+
+    def menu_choice_9(self):
         pass
         # erase = input("Do you wish to start all over again, Chosen Undead? Enter 'Y' for yes or any key for no. ")
         # if erase == "Y":
@@ -83,7 +87,7 @@ class Main:
         # else:
         #     print("Progress kept!")
 
-    def menu_choice_9(self):
+    def menu_choice_10(self):
         console.print(f"Farewell, {self.player_name}! Don't you dare go hollow :skull:!\n")
         self.access = False
 
@@ -111,6 +115,8 @@ class Main:
                 self.menu_choice_8()
             elif self.choice == '9':
                 self.menu_choice_9()
+            elif self.choice == '10':
+                self.menu_choice_10()
             else:
                 print("Invaild option!\n")
 
