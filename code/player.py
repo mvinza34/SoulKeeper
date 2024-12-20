@@ -1,5 +1,6 @@
 import json # For saving and loading progress
 import os # For deleting progress
+import random 
 
 from rich.console import Console # For console output (i.e., colors, emojis, etc.)
 from rich.table import Table # For creating tables in the console
@@ -113,6 +114,7 @@ class Player:
         self.attribute = input("Enter an attribute to level up (Vitality, Attunement, Endurance, Strength, Dexterity, Resistance, Intelligence, Faith): ")
         if self.attribute in self.selected_class:
             self.increase_attribute_level(self.selected_class, self.attribute)
+            self.random_event()
         else:
             print("Invaild attribute!\n")
 
@@ -186,6 +188,17 @@ class Player:
                 category = "" # Ensures that the category is only displayed once
         
         console.print(achievements_table)
+
+    def random_event(self):
+        event_chance = random.random()
+        if event_chance < 0.1: # 10% chance of a random event
+            bonus = random.randint(100,500)
+            self.total_souls += bonus
+            console.print(f"Random Event: :sparkles: You found {bonus} extra souls :fire:! You now have a total of {self.total_souls} souls! Good for you! :sparkles:\n")
+        elif event_chance < 0.2: # Another 10% chance 
+            penalty = random.randint(50, 300)
+            self.total_souls -= penalty
+            console.print(f"Random Event: :ghost: An enemy broke into SoulKeeper and stole {penalty} souls from you! You now have {self.total_souls} souls left! Too bad! :ghost:\n")
 
     # def save_progress(self, filename="save.json"):
     #     data = {
