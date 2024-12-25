@@ -102,8 +102,14 @@ class Main:
             console.print("Invalid input!\n")
  
     def menu_choice_10(self):
-        console.print(f"Farewell, {self.player_name}! Don't you dare go hollow :skull:!\n")
-        self.access = False
+        exit = console.input(f"Do you wish to exit :fire: SoulKeeper :fire:, {self.player_name}? Enter 'Y' for yes or 'N' for no. ")
+        if exit == "Y":
+            console.print(f"Farewell, {self.player_name}! Don't you dare go hollow :skull:!\n")
+            self.access = False
+        elif exit == "N":
+            console.print("Returning to :fire: SoulKeeper :fire:...\n")
+        else:
+            console.print("Invalid input!\n")
 
     def choices(self):
         while self.access == True: 
