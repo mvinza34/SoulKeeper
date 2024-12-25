@@ -200,31 +200,40 @@ class Player:
             self.total_souls -= penalty
             console.print(f"Random Event: :ghost: An enemy broke into SoulKeeper and stole {penalty} souls from you! You now have {self.total_souls} souls left! Too bad! :ghost:\n")
 
-    # def save_progress(self, filename="save.json"):
-    #     data = {
-    #         "attributes": self.attributes,
-    #         "total_souls": self.total_souls
-    #     }
-    #     # Saves the player's progress into a JSON file
-    #     with open(filename, 'w') as f:
-    #         json.dump(data, f) 
-    #     print("Progress saved!")
+    def save_progress(self, filename="save.json"):
+        data = {
+            "name": self.name,
+            "achievements": self.achievements,
+            "total_souls": self.total_souls,
+            "total_souls_spent": self.total_souls_spent,
+            "selected_class": self.starting_class_name,
+            "attributes": self.selected_class
+        }
+        # Saves the player's progress into a JSON file
+        with open(filename, 'w') as f:
+            json.dump(data, f) 
+        console.print("Progress saved!\n")
 
-    # def load_progress(self, filename="save.json"):
-    #     # Reads the JSON file and loads the saved progress into the player's attributes and souls
-    #     with open(filename, 'r') as f:
-    #          data = json.load(f)
-    #          self.attributes = data["attributes"]
-    #          self.total_souls = data["total_souls"]
-    #     print("Progress loaded!")
+    def load_progress(self, filename="save.json"):
+        # Reads the JSON file and loads the saved progress so that the player can pick up where they left off
+        with open(filename, 'r') as f:
+             data = json.load(f)
+             self.name = data["name"]
+             self.achievements = data.get("achievements", self.achievements)
+             self.total_souls = data["total_souls"]
+             self.total_souls_spent = data["total_souls_spent"]
+             self.starting_class_name = data["selected_class"]
+             self.selected_class = data["attributes"]
+             self.check_for_class = True
+        console.print("Progress loaded!\n")
 
-    # def delete_progress(self):
-    #     # Erases the json file so that the player can start new
-    #     if os.path.exists("save.json"):
-    #         os.remove("save.json")
-    #         print("Progress deleted!")
-    #     else:
-    #         print("The file does not exist")
+    def delete_progress(self):
+        # Erases the json file so that the player can start new
+        if os.path.exists("save.json"):
+            os.remove("save.json")
+            console.print("Progress deleted!\n")
+        else:
+            console.print("The file does not exist!\n")
 
 
 

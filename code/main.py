@@ -75,21 +75,32 @@ class Main:
         self.player.view_achievements()
 
     def menu_choice_7(self):
-        pass
-        #self.player.save_progress()
+        save = console.input(f"Do you wish to save your progress, {self.player_name}? Enter 'Y' for yes or 'N' for no. ")
+        if save == "Y":
+            self.player.save_progress()
+        elif save == "N":
+            console.print("Save canceled!\n")
+        else:
+            console.print("Invalid input!\n")
 
     def menu_choice_8(self):
-        pass
-        #self.player.load_progress()
+        load = console.input(f"Do you wish to pick up where you left off, {self.player_name}? Enter 'Y' for yes or 'N' for no. ")
+        if load == "Y":
+            self.player.load_progress()
+        elif load == "N":
+            console.print("Loading canceled!\n")
+        else:
+            console.print("Invalid input!\n")
 
     def menu_choice_9(self):
-        pass
-        # erase = input("Do you wish to start all over again, Chosen Undead? Enter 'Y' for yes or any key for no. ")
-        # if erase == "Y":
-        #     self.player.delete_progress()
-        # else:
-        #     print("Progress kept!")
-
+        delete = console.input(f"Do you wish to start all over again, {self.player_name}? Enter 'Y' for yes or 'N' for no. ")
+        if delete == "Y":
+            self.player.delete_progress()
+        elif delete == "N":
+            console.print("Progress kept!\n")
+        else:
+            console.print("Invalid input!\n")
+ 
     def menu_choice_10(self):
         console.print(f"Farewell, {self.player_name}! Don't you dare go hollow :skull:!\n")
         self.access = False
