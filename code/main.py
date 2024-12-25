@@ -47,19 +47,22 @@ class Main:
         console.print("[bright_red]10. Exit :coffin:\n")
 
     def menu_choice_1(self):
-        self.player.choose_class()
+        if self.player.check_for_class == False:
+            self.player.choose_class()
+        else:
+            console.print("You have already picked a class!\n")
 
     def menu_choice_2(self):
         if self.player.check_for_class == True:
             self.player.level_up()
         else:
-            print("You must first choose a class before leveling up!\n")
+            console.print("You must first choose a class before leveling up!\n")
 
     def menu_choice_3(self):
         if self.player.check_for_class == True:
             self.player.show_status()
         else:
-            print("You must first choose a class before displaying your current status!\n")
+            console.print("You must first choose a class before displaying your current status!\n")
 
     def menu_choice_4(self):
         self.more_souls = int(console.input("Enter how many souls :fire: you wish to add: "))
@@ -118,7 +121,7 @@ class Main:
             elif self.choice == '10':
                 self.menu_choice_10()
             else:
-                print("Invaild option!\n")
+                console.print("Invaild option!\n")
 
     def run(self):
       self.start_app()
