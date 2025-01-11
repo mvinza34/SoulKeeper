@@ -39,7 +39,7 @@ class Main:
         console.print("[green]2. Level up attribute :muscle:")
         console.print("[white]3. View current stats :scroll:")
         console.print("[turquoise2]4. Add more souls :heavy_plus_sign::fire:")
-        console.print("[bright_magenta]5. Show total souls spent :fire:")
+        console.print("[bright_magenta]5. Show spent souls :fire:")
         console.print("[gold1]6. View achievements :trophy:")
         console.print("[bright_green]7. Save progress :file_folder:")
         console.print("[cyan]8. Load progress :unlock:")
