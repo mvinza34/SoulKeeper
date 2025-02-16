@@ -1,18 +1,19 @@
 from rich.console import Console # For console output (i.e., colors, emojis, etc.)
+from rich.panel import Panel
 from player import Player
 
 console = Console()
 
 class Main:
     def __init__(self):
-        console.print("\n------ :fire: SoulKeeper :fire: ------\n")
+        console.print(Panel.fit("Greetings, Chosen Undead :skull:!", title=":fire: SoulKeeper :fire:", style="gold1"))
         self.start = True
         self.access = False
 
     def start_app(self):
         # Prompt the user to enter a valid name and starting number of souls before proceeding
         while self.start:
-            self.player_name = console.input("Greetings, Chosen Undead :skull:! Please enter your name: ").strip()
+            self.player_name = console.input("Please enter your name: ").strip()
 
             if not self.player_name:
                 print("You must enter a name.\n")
@@ -65,8 +66,11 @@ class Main:
             console.print("You must first choose a class before displaying your current status!\n")
 
     def menu_choice_4(self):
-        self.more_souls = int(console.input("Enter how many souls :fire: you wish to add: "))
-        self.player.add_souls(self.more_souls)
+        try:
+            self.more_souls = int(console.input("Enter how many souls :fire: you wish to add: "))
+            self.player.add_souls(self.more_souls)
+        except ValueError:
+            console.print("You must enter a valid integer for souls.\n")
 
     def menu_choice_5(self):
         self.player.show_souls_spent()
