@@ -1,10 +1,6 @@
-﻿---
-
-# **🔥 SoulKeeper: A Dark Souls-Themed Personal Finance Tracker 🔥**  
+﻿# **🔥 SoulKeeper 🔥**  
 
 Welcome, Chosen Undead! 🗡️ This project is a **Dark Souls-inspired personal finance tracker** that helps you manage your "souls" (currency) by budgeting them across various attributes—just like in the game! Track how much you have, level up strategically, and unlock achievements while surviving the dangers of financial planning.  
-
----
 
 ## **⚔️ Project Overview**  
 
@@ -14,8 +10,6 @@ Welcome, Chosen Undead! 🗡️ This project is a **Dark Souls-inspired personal
 - Experience random events that reward or punish their spending habits.  
 - Unlock achievements for hitting financial milestones.  
 - Save and load progress, ensuring they never "go hollow!"  
-
----
 
 ## **📜 Features**  
 
@@ -61,8 +55,6 @@ Welcome, Chosen Undead! 🗡️ This project is a **Dark Souls-inspired personal
   - ASCII-inspired tables for stats, spending, and achievements.  
   - Thematic Dark Souls elements with emojis and styling.  
 
----
-
 ## **🛠️ Installation**  
 
 ### **Prerequisites:**  
@@ -76,16 +68,14 @@ Ensure you have the following installed:
 ### **Running the Project:**  
 1. Clone this repository:  
    ```bash
-   git clone https://github.com/mvinza34/soulkeeper.git
-   cd soulkeeper
+   git clone https://github.com/mvinza34/SoulKeeper.git
+   cd SoulKeeper
    ```  
 2. Run the main script:  
    ```bash
    python main.py
    ```  
 3. Follow the on-screen prompts to begin your journey!  
-
----
 
 ## **🎮 How to Play**  
 
@@ -105,14 +95,10 @@ Ensure you have the following installed:
 
 4. **Level up wisely, unlock achievements, and survive!**  
 
----
-
 ## **📸 Screenshots**  
 
-![SoulKeeper Screenshot](https://source.unsplash.com/800x400/?dark-souls-game)  
+![SoulKeeper Screenshot](./screenshots/soulkeeper_interface.PNG)  
 _Example image showcasing the immersive CLI experience_  
-
----
 
 ## **🚀 Future Enhancements**  
 
@@ -120,8 +106,6 @@ Planned improvements include:
 - Adding **income sources** to simulate salary-like soul earnings.  
 - Implementing a dynamic and engaging **quest system** for additional rewards.
 - More complex **random events** with player choices (fight or flee scenarios).  
-
----
 
 ## **❓ FAQ**  
 
@@ -134,13 +118,9 @@ A: Yes! You can easily modify the `Settings.py` file to add custom stats or perk
 **Q: What happens if I run out of souls?**  
 A: Don't worry! You can always add more souls, but beware—spending too much can have consequences!  
 
----
-
 ## **🧙‍♂️ Inspiration**  
 
 This project was inspired by the **Dark Souls series**, blending elements of the game with real-world financial management concepts to create a unique budgeting experience.  
-
----
 
 ## **🤝 Contributing**  
 
@@ -149,13 +129,8 @@ Contributions are welcome! If you have suggestions or find bugs, please:
 2. Make changes and submit a pull request.  
 3. Follow the Dark Souls motto: "Git Gud."  
 
----
-
 ## **📜 License**  
 This project is licensed under the MIT License.  
 
----
 
 Enjoy your journey, Chosen Undead! Don't you dare go hollow! 🗡️💀🔥  
-
----
