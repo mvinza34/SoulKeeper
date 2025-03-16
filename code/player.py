@@ -20,8 +20,8 @@ class Player:
         self.achievements = settings.ACHIEVEMENTS
         self.souls_spent_per_attribute = settings.SOULS_SPENT_PER_ATTRIBUTE
 
-        # Check if the user chose a starting class
-        self.check_for_class = False
+        self.check_for_class = False # Check if the user chose a starting class
+        self.quests = []  # List to store quests
 
     def add_souls(self, souls_to_add):
         try:
@@ -51,6 +51,7 @@ class Player:
             self.total_souls_spent += cost # Keep track of total amount of spent souls
             self.souls_spent_per_attribute[attribute] += cost # Update the souls spent on the attribute
             self.check_achievements()
+            self.check_quests()
 
             console.print(f"You spent {cost} souls to level up.")
             console.print(f"{attribute} leveled up to {selected_class[attribute]}!")
@@ -172,6 +173,27 @@ class Player:
             self.total_souls -= penalty
             console.print(f"Random Event: :ghost: An enemy broke into SoulKeeper and stole {penalty} souls from you! You now have {self.total_souls} souls left! Too bad! :ghost:\n")
 
+    def add_quest(self, quest):
+        self.quests.append(quest)
+        console.print(f"New Quest Added: {quest.name}\n")
+
+    def check_quests(self):
+        for quest in self.quests:
+            if not quest.completed:
+                quest.check_completion(self)
+
+    def show_quests(self):
+        quest_table = Table(title="Quests", show_header=True, header_style="bold magenta")
+        quest_table.add_column("Name", style="cyan")
+        quest_table.add_column("Description", style="green")
+        quest_table.add_column("Status", style="yellow")
+
+        for quest in self.quests:
+            status = "Completed" if quest.completed else "Incomplete"
+            quest_table.add_row(quest.name, quest.description, status)
+
+        console.print(quest_table)
+            
     def save_progress(self, filename="save.json"):
         data = {
             "name": self.name,

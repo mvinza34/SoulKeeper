@@ -1,6 +1,7 @@
 from rich.console import Console # For console output (i.e., colors, emojis, etc.)
 from rich.panel import Panel
 from player import Player
+from quest import Quest
 
 console = Console()
 
@@ -28,10 +29,27 @@ class Main:
             except ValueError:
                 print("You must enter a valid integer for souls.\n")
 
+    def create_quests(self,player):
+        quest1 = Quest(
+            name="First Steps",
+            description="Spend 500 souls to level up any attribute.",
+            requirements={"total_souls_spent": 500},
+            rewards={"total_souls": 100}
+        )
+        quest2 = Quest(
+            name="Strength Training",
+            description="Level up Strength to 15.",
+            requirements={("souls_spent_per_attribute", "Strength"): 15},
+            rewards={"total_souls": 200}
+        )
+        player.add_quest(quest1)
+        player.add_quest(quest2)
+
     def access_menu(self):
         # Grant user access to main menu 
         self.access = True
         self.player = Player(self.player_name, self.player_souls)
+        self.create_quests(self.player)  # Assign quests to the player
         console.print(f"Welcome, {self.player_name}, to SoulKeeper! You start with {self.player_souls} souls :fire:!\n")
         self.choices()
 
@@ -41,11 +59,12 @@ class Main:
         console.print("[white]3. View current stats :scroll:")
         console.print("[turquoise2]4. Add more souls :heavy_plus_sign::fire:")
         console.print("[bright_magenta]5. Show spent souls :fire:")
-        console.print("[gold1]6. View achievements :trophy:")
-        console.print("[bright_green]7. Save progress :file_folder:")
-        console.print("[cyan]8. Load progress :unlock:")
-        console.print("[bright_yellow]9. Delete progress :wastebasket:")
-        console.print("[bright_red]10. Exit :coffin:\n")
+        console.print("[purple]6. View quests :scroll:")
+        console.print("[gold1]7. View achievements :trophy:")
+        console.print("[bright_green]8. Save progress :file_folder:")
+        console.print("[cyan]9. Load progress :unlock:")
+        console.print("[bright_yellow]10. Delete progress :wastebasket:")
+        console.print("[bright_red]11. Exit :coffin:\n")
 
     def menu_choice_1(self):
         if self.player.check_for_class == False:
@@ -76,9 +95,12 @@ class Main:
         self.player.show_souls_spent()
 
     def menu_choice_6(self):
-        self.player.view_achievements()
+        self.player.show_quests()
 
     def menu_choice_7(self):
+        self.player.view_achievements()
+
+    def menu_choice_8(self):
         save = console.input(f"Do you wish to save your progress, {self.player_name}? Enter 'Y' for yes or 'N' for no. ")
         if save == "Y":
             self.player.save_progress()
@@ -87,7 +109,7 @@ class Main:
         else:
             console.print("Invalid input!\n")
 
-    def menu_choice_8(self):
+    def menu_choice_9(self):
         load = console.input(f"Do you wish to pick up where you left off, {self.player_name}? Enter 'Y' for yes or 'N' for no. ")
         if load == "Y":
             self.player.load_progress()
@@ -96,7 +118,7 @@ class Main:
         else:
             console.print("Invalid input!\n")
 
-    def menu_choice_9(self):
+    def menu_choice_10(self):
         delete = console.input(f"Do you wish to start all over again, {self.player_name}? Enter 'Y' for yes or 'N' for no. ")
         if delete == "Y":
             self.player.delete_progress()
@@ -105,7 +127,7 @@ class Main:
         else:
             console.print("Invalid input!\n")
  
-    def menu_choice_10(self):
+    def menu_choice_11(self):
         exit = console.input(f"Do you wish to exit :fire: SoulKeeper :fire:, {self.player_name}? Enter 'Y' for yes or 'N' for no. ")
         if exit == "Y":
             console.print(f"Farewell, {self.player_name}! Don't you dare go hollow :skull:!\n")
@@ -141,6 +163,8 @@ class Main:
                 self.menu_choice_9()
             elif self.choice == '10':
                 self.menu_choice_10()
+            elif self.choice == '11':
+                self.menu_choice_11()
             else:
                 console.print("Invaild option!\n")
 
