@@ -7,6 +7,7 @@ Welcome, Chosen Undead! 🗡️ This project is a **Dark Souls-inspired personal
 **SoulKeeper** keeps track of the number of souls a player has and allows them to:  
 - Allocate souls to level up various attributes.  
 - Track spending and savings across different attributes.  
+- Complete quests for additional rewards and challenges.
 - Experience random events that reward or punish their spending habits.  
 - Unlock achievements for hitting financial milestones.  
 - Save and load progress, ensuring they never "go hollow!"  
@@ -43,13 +44,19 @@ Welcome, Chosen Undead! 🗡️ This project is a **Dark Souls-inspired personal
   - Selecting your first class.  
 - Track progress with an interactive achievements table.  
 
-### **6. Save, Load, and Delete Progress** 📂  
+### **6. Quest System** 📜  
+- Take on quests that provide additional challenges and rewards.  
+- Quests can have various requirements, such as spending a certain amount of souls or leveling up specific attributes.  
+- Completing quests grants rewards like extra souls, attribute boosts, and special items.  
+- Track your quest progress with a detailed quest table.
+
+### **7. Save, Load, and Delete Progress** 📂  
 - Never lose your progress! You can:  
   - **Save** your current souls and stats to a JSON file.  
   - **Load** past progress to continue your journey.  
   - **Delete** progress to start anew.  
 
-### **7. Immersive User Interface** 🎨  
+### **8. Immersive User Interface** 🎨  
 - Powered by the **`rich`** library, the terminal experience includes:  
   - Colorful outputs.  
   - ASCII-inspired tables for stats, spending, and achievements.  
@@ -87,11 +94,12 @@ Ensure you have the following installed:
    - `[3]` View your current stats.  
    - `[4]` Add more souls.  
    - `[5]` View total souls spent.  
-   - `[6]` Check your achievements.  
-   - `[7]` Save progress.  
-   - `[8]` Load progress.  
-   - `[9]` Delete progress.  
-   - `[10]` Exit.  
+   - `[6]` View quests.
+   - `[7]` Check your achievements.  
+   - `[8]` Save progress.  
+   - `[9]` Load progress.  
+   - `[10]` Delete progress.  
+   - `[11]` Exit.  
 
 4. **Level up wisely, unlock achievements, and survive!**  
 
@@ -104,7 +112,7 @@ _Example image showcasing the immersive CLI experience_
 
 Planned improvements include:  
 - Adding **income sources** to simulate salary-like soul earnings.  
-- Implementing a dynamic and engaging **quest system** for additional rewards.
+- Implementing more dynamic and engaging **quests** for additional rewards.
 - More complex **random events** with player choices (fight or flee scenarios).  
 
 ## **❓ FAQ**  
