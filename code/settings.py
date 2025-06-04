@@ -62,7 +62,14 @@ CLASSES = {
 }
 
  # Define the achievements that the user must unlock
-ACHIEVEMENTS = {"Create a Class": False, "Reach Level 10": False, "Spend 1,000 Souls": False, "Spend 10,000 Souls": False}
+ACHIEVEMENTS = {
+    "Create a Class": False, "Reach Level 10": False, "Reach Level 50": False, "Reach Level 100": False,
+    "Reach Level 150": False, "Reach Level 200": False, "Reach Level 250": False, "Reach Level 300": False,
+    "Small Spender": False, "Medium Spender": False, "Soul Hoarder": False, "Soul Millionaire": False, 
+    "Soul Keeper": False, "Big Spender": False, "Ultimate Spender": False, "Vitality Master": False, 
+    "Strength Champion": False, "Dexterity Expert": False, "Intelligence Guru": False, "Warrior's Path": False, 
+    "Knight's Honor": False, "Sorcerer's Wisdom": False, "Thief's Cunning": False, 
+ }
 
 SOULS_SPENT_PER_ATTRIBUTE = {  # Track souls spent per attribute
             "Vitality": 0, "Attunement": 0, "Endurance": 0, "Strength": 0, 

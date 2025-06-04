@@ -133,20 +133,67 @@ class Player:
         # Leveling Achievements
         if self.selected_class["Level"] >= 10:
             self.unlock_achievement("Reach Level 10")
+        if self.selected_class["Level"] >= 50:
+            self.unlock_achievement("Reach Level 50")
+        if self.selected_class["Level"] >= 100:
+            self.unlock_achievement("Reach Level 100")
+        if self.selected_class["Level"] >= 150:
+            self.unlock_achievement("Reach Level 150")
+        if self.selected_class["Level"] >= 200:
+            self.unlock_achievement("Reach Level 200")
+        if self.selected_class["Level"] >= 250:
+            self.unlock_achievement("Reach Level 250")
+        if self.selected_class["Level"] >= 300:
+            self.unlock_achievement("Reach Level 300")
+
+        # Soul Hoarding Achievements
+        if self.total_souls >= 10000:
+            self.unlock_achievement("Soul Hoarder")
+        if self.total_souls >= 1000000:
+            self.unlock_achievement("Soul Millionaire")
+        if self.total_souls >= 1000000000:
+            self.unlock_achievement("Soul Keeper")
 
         # Soul Spending Achievements
         if self.total_souls_spent >= 1000:
-            self.unlock_achievement("Spend 1,000 Souls")
+            self.unlock_achievement("Small Spender")
         if self.total_souls_spent >= 10000:
-            self.unlock_achievement("Spend 10,00 Souls")
+            self.unlock_achievement("Medium Spender")
+        if self.total_souls_spent >= 50000:
+            self.unlock_achievement("Big Spender")
+        if self.total_souls_spent >= 500000:
+            self.unlock_achievement("Ultimate Spender")
+
+        # Attribute Leveling Achievements
+        if self.souls_spent_per_attribute["Vitality"] >= 20:
+            self.unlock_achievement("Vitality Master")
+        if self.souls_spent_per_attribute["Strength"] >= 25:
+            self.unlock_achievement("Strength Champion")
+        if self.souls_spent_per_attribute["Dexterity"] >= 30:
+            self.unlock_achievement("Dexterity Expert")
+        if self.souls_spent_per_attribute["Intelligence"] >= 35:
+            self.unlock_achievement("Intelligence Guru")
+
+        # Character Build Achievements
+        if self.selected_class["Level"] >= 20 and self.starting_class_name == "Warrior":
+            self.unlock_achievement("Warrior's Path")
+        if self.selected_class["Level"] >= 25 and self.starting_class_name == "Knight":
+            self.unlock_achievement("Knight's Honor")
+        if self.selected_class["Level"] >= 30 and self.starting_class_name == "Sorcerer":
+            self.unlock_achievement("Sorcerer's Wisdom")
+        if self.selected_class["Level"] >= 35 and self.starting_class_name == "Thief":
+            self.unlock_achievement("Thief's Cunning")
 
     def view_achievements(self):
         # Group the achievements by category
         categories = {
             "General Milestones": {"Create a Class"},
-            "Leveling Milestones": {"Reach Level 10"},
-            "Soul Spending": {"Spend 1,000 Souls", "Spend 10,000 Souls"}
-            }
+            "Leveling Milestones": {"Reach Level 10", "Reach Level 50", "Reach Level 100", "Reach Level 150", 
+                                   "Reach Level 200", "Reach Level 250", "Reach Level 300"},
+            "Soul Spending": {"Small Spender", "Medium Spender", "Big Spender", "Ultimate Spender"},
+            "Attribute Mastery": {"Vitality Master", "Strength Champion", "Dexterity Expert", "Intelligence Guru"},
+            "Character Builds": {"Warrior's Path", "Knight's Honor", "Sorcerer's Wisdom", "Thief's Cunning"}
+        }
 
         # Create a table displaying all achievements, locked or unlocked
         achievements_table = Table(title=":trophy: Achievements :trophy:", show_header=True, header_style="bold magenta")
