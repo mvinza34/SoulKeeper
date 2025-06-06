@@ -211,14 +211,72 @@ class Player:
 
     def random_event(self):
         event_chance = random.random()
-        if event_chance < 0.1: # 10% chance of a random event
-            bonus = random.randint(100,500)
+
+        # Soul gains or losses based on random events
+        if event_chance < 0.5: # 10% chance of a random event
+            bonus = random.randint(100,1000)
             self.total_souls += bonus
-            console.print(f"Random Event: :sparkles: You found {bonus} extra souls :fire:! You now have a total of {self.total_souls} souls! Good for you! :sparkles:\n")
-        elif event_chance < 0.2: # Another 10% chance 
-            penalty = random.randint(50, 300)
+            console.print(f":sparkles: You found {bonus} extra souls :fire:! You now have a total of {self.total_souls} souls! Good for you! :sparkles:\n")
+        elif event_chance < 0.3: # Another 10% chance 
+            penalty = random.randint(50, 1000)
             self.total_souls -= penalty
-            console.print(f"Random Event: :ghost: An enemy broke into SoulKeeper and stole {penalty} souls from you! You now have {self.total_souls} souls left! Too bad! :ghost:\n")
+            console.print(f":ghost: An enemy broke into SoulKeeper and stole {penalty} souls from you! You now have {self.total_souls} souls left! Too bad! :ghost:\n")
+        elif event_chance < 0.15:
+            jackpot = random.randint(10000, 50000)
+            self.total_souls += jackpot
+            console.print(f":star2: Face it, Tiger...You've just hit the jackpot and found a hidden cache with {jackpot} souls! You now have a total of {self.total_souls} souls! Lucky you! :star2:\n")
+        
+        # Attribute gains based on random events
+        elif event_chance < 0.49:
+            self.selected_class["Vitality"] += 3
+            console.print(":green_heart: You feel invigorated! Vitality increased by 3 (free of charge)!")
+        elif event_chance < 0.45:
+            self.selected_class["Attunement"] += 1
+            console.print(":green_heart: You feel like you mastered a new spell! Attunement increased by 1 (free of charge)!")
+        elif event_chance < 0.49:
+            self.selected_class["Endurance"] += 1
+            console.print(":green_heart: You feel energized! Endurance increased by 1 (free of charge)!")
+        elif event_chance < 0.47:
+            self.selected_class["Strength"] += 2
+            console.print(":green_heart: You feel like you've gotten stronger! Strength increased by 2 (free of charge)!")
+        elif event_chance < 0.45:
+            self.selected_class["Dexterity"] += 2
+            console.print(":green_heart: You feel like your hands can do anything! Dexterity increased by 2 (free of charge)!")
+        elif event_chance < 0.41:
+            self.selected_class["Resistance"] += 1
+            console.print(":green_heart: You feel like you've become durable! Resistance increased by 1 (free of charge)!")
+        elif event_chance < 0.48:
+            self.selected_class["Intelligence"] += 2
+            console.print(":green_heart: You feel like you are strong with magic! Intelligence increased by 2 (free of charge)!")
+        elif event_chance < 0.48:
+            self.selected_class["Faith"] += 2
+            console.print(":green_heart: You feel like you are blessed by the gods! Faith increased by 2 (free of charge)!")
+
+        # Attribute losses based on random events
+        elif event_chance < 0.29:
+            self.selected_class["Vitality"] = max(0, self.selected_class["Vitality"] - 3)
+            console.print(":broken_heart: You feel your life force depleting. Vitality decreased by 3.")
+        elif event_chance < 0.25:
+            self.selected_class["Attunement"] = max(0, self.selected_class["Attunement"] - 1)
+            console.print(":broken_heart: You feel your knowledge in spells getting rusty. Attunement decreased by 1.")
+        elif event_chance < 0.29:
+            self.selected_class["Endurance"] = max(0, self.selected_class["Endurance"] - 1)
+            console.print(":broken_heart: You feel your energy getting weaker. Endurance decreased by 1.")
+        elif event_chance < 0.27:
+            self.selected_class["Strength"] = max(0, self.selected_class["Strength"] - 2)
+            console.print(":broken_heart: You feel weakened. Strength decreased by 2.")
+        elif event_chance < 0.25:
+            self.selected_class["Dexterity"] = max(0, self.selected_class["Dexterity"] - 2)
+            console.print(":broken_heart: You feel like your hands are failing you. Dexterity decreased by 2.")
+        elif event_chance < 0.21:
+            self.selected_class["Resistance"] = max(0, self.selected_class["Resistance"] - 1)
+            console.print(":broken_heart: You feel your body crumbling from within. Resistance decreased by 1.")
+        elif event_chance < 0.28:
+            self.selected_class["Intelligence"] = max(0, self.selected_class["Intelligence"] - 2)
+            console.print(":broken_heart: You feel your magic reserves decreasing. Intelligence decreased by 2.")
+        elif event_chance < 0.28:
+            self.selected_class["Faith"] = max(0, self.selected_class["Faith"] - 2)
+            console.print(":broken_heart: You feel like the gods have forsaken you. Faith decreased by 2.")
 
     def add_quest(self, quest):
         self.quests.append(quest)
