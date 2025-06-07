@@ -63,15 +63,31 @@ CLASSES = {
 
  # Define the achievements that the user must unlock
 ACHIEVEMENTS = {
-    "Create a Class": False, "Reach Level 10": False, "Reach Level 50": False, "Reach Level 100": False,
-    "Reach Level 150": False, "Reach Level 200": False, "Reach Level 250": False, "Reach Level 300": False,
-    "Small Spender": False, "Medium Spender": False, "Soul Hoarder": False, "Soul Millionaire": False, 
-    "Soul Keeper": False, "Big Spender": False, "Ultimate Spender": False, "Vitality Master": False, 
-    "Strength Champion": False, "Dexterity Expert": False, "Intelligence Guru": False, "Warrior's Path": False, 
-    "Knight's Honor": False, "Sorcerer's Wisdom": False, "Thief's Cunning": False, 
+    # General Achievements
+    "Create a Class": False, 
+
+    # Leveling Achievements
+    "Reach Level 10": False, "Reach Level 50": False, "Reach Level 100": False, "Reach Level 150": False, 
+    "Reach Level 200": False, "Reach Level 250": False, "Reach Level 300": False,
+
+    # Soul Hoarding Achievements
+    "Soul Hoarder": False, "Soul Millionaire": False, "Soul Keeper": False,
+
+    # Soul Spending Achievements
+    "Small Spender": False, "Medium Spender": False,  "Big Spender": False, "Ultimate Spender": False, 
+
+    # Attribute Leveling Achievements
+    "Vitality Master": False, "Attunement Prodigy": False, "Endurance Dynamo": False, "Strength Champion": False,
+    "Dexterity Expert": False, "Resistance Tank": False, "Intelligence Sage": False, "Faith Prophet": False,
+
+    # Character Build Achievements
+    "Warrior's Path": False, "Knight's Honor": False, "Wanderer's Resilience": False, "Thief's Cunning": False,
+    "Bandit's Savagery": False, "Hunter's Precision": False, "Sorcerer's Wisdom": False, "Pyromancer's Flame": False,
+    "Cleric's Devotion": False, "Deprived's Struggle": False,
  }
 
-SOULS_SPENT_PER_ATTRIBUTE = {  # Track souls spent per attribute
+ # Track souls spent per attribute
+SOULS_SPENT_PER_ATTRIBUTE = { 
             "Vitality": 0, "Attunement": 0, "Endurance": 0, "Strength": 0, 
             "Dexterity": 0, "Resistance": 0, "Intelligence": 0, "Faith": 0
-        }
+}

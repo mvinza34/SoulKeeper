@@ -165,34 +165,71 @@ class Player:
             self.unlock_achievement("Ultimate Spender")
 
         # Attribute Leveling Achievements
-        if self.souls_spent_per_attribute["Vitality"] >= 20:
+        if self.selected_class["Vitality"] >= 50:
             self.unlock_achievement("Vitality Master")
-        if self.souls_spent_per_attribute["Strength"] >= 25:
+        if self.selected_class["Attunement"] >= 50:
+            self.unlock_achievement("Attunement Prodigy")
+        if self.selected_class["Endurance"] >= 40:
+            self.unlock_achievement("Endurance Dynamo")
+        if self.selected_class["Strength"] >= 40:
             self.unlock_achievement("Strength Champion")
-        if self.souls_spent_per_attribute["Dexterity"] >= 30:
+        if self.selected_class["Dexterity"] >= 45:
             self.unlock_achievement("Dexterity Expert")
-        if self.souls_spent_per_attribute["Intelligence"] >= 35:
-            self.unlock_achievement("Intelligence Guru")
+        if self.selected_class["Resistance"] >= 30:
+            self.unlock_achievement("Resistance Tank")
+        if self.selected_class["Intelligence"] >= 50:
+            self.unlock_achievement("Intelligence Sage")
+        if self.selected_class["Faith"] >= 50:
+            self.unlock_achievement("Faith Prophet")
 
         # Character Build Achievements
-        if self.selected_class["Level"] >= 20 and self.starting_class_name == "Warrior":
+        if self.selected_class["Level"] >= 150 and self.starting_class_name == "Warrior":
             self.unlock_achievement("Warrior's Path")
-        if self.selected_class["Level"] >= 25 and self.starting_class_name == "Knight":
+        if self.selected_class["Level"] >= 150 and self.starting_class_name == "Knight":
             self.unlock_achievement("Knight's Honor")
-        if self.selected_class["Level"] >= 30 and self.starting_class_name == "Sorcerer":
-            self.unlock_achievement("Sorcerer's Wisdom")
-        if self.selected_class["Level"] >= 35 and self.starting_class_name == "Thief":
+        if self.selected_class["Level"] >= 150 and self.starting_class_name == "Wanderer":
+            self.unlock_achievement("Wanderer's Resilience")
+        if self.selected_class["Level"] >= 150 and self.starting_class_name == "Thief":
             self.unlock_achievement("Thief's Cunning")
+        if self.selected_class["Level"] >= 150 and self.starting_class_name == "Bandit":
+            self.unlock_achievement("Bandit's Savagery")
+        if self.selected_class["Level"] >= 150 and self.starting_class_name == "Hunter":
+            self.unlock_achievement("Hunter's Precision")
+        if self.selected_class["Level"] >= 150 and self.starting_class_name == "Sorcerer":
+            self.unlock_achievement("Sorcerer's Wisdom")
+        if self.selected_class["Level"] >= 150 and self.starting_class_name == "Pyromancer":
+            self.unlock_achievement("Pyromancer's Flame")
+        if self.selected_class["Level"] >= 150 and self.starting_class_name == "Cleric":
+            self.unlock_achievement("Cleric's Devotion")
+        if self.selected_class["Level"] >= 150 and self.starting_class_name == "Deprived":
+            self.unlock_achievement("Deprived's Struggle")
 
     def view_achievements(self):
         # Group the achievements by category
         categories = {
-            "General Milestones": {"Create a Class"},
-            "Leveling Milestones": {"Reach Level 10", "Reach Level 50", "Reach Level 100", "Reach Level 150", 
-                                   "Reach Level 200", "Reach Level 250", "Reach Level 300"},
-            "Soul Spending": {"Small Spender", "Medium Spender", "Big Spender", "Ultimate Spender"},
-            "Attribute Mastery": {"Vitality Master", "Strength Champion", "Dexterity Expert", "Intelligence Guru"},
-            "Character Builds": {"Warrior's Path", "Knight's Honor", "Sorcerer's Wisdom", "Thief's Cunning"}
+            "General Milestones": {
+                "Create a Class"
+            },
+
+            "Leveling Milestones": {
+                "Reach Level 10", "Reach Level 50", "Reach Level 100", "Reach Level 150", 
+                "Reach Level 200", "Reach Level 250", "Reach Level 300"
+            },
+
+            "Soul Spending": {
+                "Small Spender", "Medium Spender", "Big Spender", "Ultimate Spender"
+            },
+
+            "Attribute Mastery": {
+                "Vitality Master", "Attunement Prodigy", "Endurance Dynamo", "Strength Champion", 
+                "Dexterity Expert", "Resistance Tank", "Intelligence Sage", "Faith Prophet"
+            },
+
+            "Character Builds": {
+                 "Warrior's Path", "Knight's Honor", "Wanderer's Resilience",  "Thief's Cunning",
+                 "Bandit's Savagery", "Hunter's Precision", "Sorcerer's Wisdom", "Pyromancer's Flame",
+                 "Cleric's Devotion",  "Deprived's Struggle"
+            }
         }
 
         # Create a table displaying all achievements, locked or unlocked
