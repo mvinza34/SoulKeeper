@@ -30,20 +30,153 @@ class Main:
                 print("You must enter a valid integer for souls.\n")
 
     def create_quests(self,player):
-        quest1 = Quest(
-            name="First Steps",
-            description="Spend 500 souls to level up any attribute.",
-            requirements={"total_souls_spent": 500},
-            rewards={"total_souls": 100}
-        )
-        quest2 = Quest(
-            name="Strength Training",
-            description="Level up Strength to 15.",
-            requirements={("souls_spent_per_attribute", "Strength"): 15},
-            rewards={"total_souls": 200}
-        )
-        player.add_quest(quest1)
-        player.add_quest(quest2)
+        quests = [
+            # General Quests
+            Quest(
+                name="First Steps",
+                description="Level up for the first time choosing any attribute.",
+                requirements={("selected_class", "Level"): 1},
+                rewards={"total_souls": 10000}
+            ),
+
+            # Attribute Leveling Quests
+            Quest(
+                name="Vitality Boosting",
+                description="Level up Vitality to 50.",
+                requirements={("selected_class", "Vitality"): 50},
+                rewards={"total_souls": 50000}
+            ),
+
+            Quest(
+                name="Attunement Studying",
+                description="Level up Attunement to 50.",
+                requirements={("selected_class", "Attunement"): 50},
+                rewards={"total_souls": 50000}
+            ),
+
+            Quest(
+                name="Endurance Workout",
+                description="Level up Endurance to 40.",
+                requirements={("selected_class", "Endurance"): 40},
+                rewards={"total_souls": 30000}
+            ),
+
+            Quest(
+                name="Strength Training",
+                description="Level up Strength to 50.",
+                requirements={("selected_class", "Strength"): 40},
+                rewards={"total_souls": 50000}
+            ),
+
+            Quest(
+                name="Dexterity Training",
+                description="Level up Dexterity to 45.",
+                requirements={("selected_class", "Dexterity"): 45},
+                rewards={"total_souls": 50000}
+            ),
+
+            Quest(
+                name="Resistance Buffing",
+                description="Level up Resistance to 30.",
+                requirements={("selected_class", "Resistance"): 30},
+                rewards={"total_souls": 50000}
+            ),
+
+            Quest(
+                name="Intelligence Studying",
+                description="Level up Intelligence to 50.",
+                requirements={("selected_class", "Intelligence"): 50},
+                rewards={"total_souls": 50000}
+            ),
+
+            Quest(
+                name="Faith Pilgrimage",
+                description="Level up Faith to 50.",
+                requirements={("selected_class", "Faith"): 50},
+                rewards={"total_souls": 50000}
+            ),
+
+            # Character Build Quests
+            Quest(
+                name="Path of the Warrior",
+                description="Level up Warrior to 150.",
+                requirements={"selected_class": "Warrior", ("selected_class", "Level"): 20},
+                rewards={"total_souls": 100000}
+            ),
+
+            Quest(
+                name="Path of the Warrior",
+                description="Level up to 150 as a Warrior.",
+                requirements={"selected_class": "Warrior", ("selected_class", "Level"): 150},
+                rewards={"total_souls": 100000}
+            ),
+
+            Quest(
+                name="Strength of the Knight",
+                description="Level up to 150 as a Knight.",
+                requirements={"selected_class": "Knight", ("selected_class", "Level"): 150},
+                rewards={"total_souls": 100000}
+            ),
+
+            Quest(
+                name="Endurance of the Wanderer",
+                description="Level up to 150 as a Wanderer.",
+                requirements={"selected_class": "Wanderer", ("selected_class", "Level"): 150},
+                rewards={"total_souls": 100000}
+            ),
+
+            Quest(
+                name="Agility of the Thief",
+                description="Level up to 150 as a Thief.",
+                requirements={"selected_class": "Thief", ("selected_class", "Level"): 150},
+                rewards={"total_souls": 100000}
+            ),
+
+            Quest(
+                name="Brutality of the Bandit",
+                description="Level up to 150 as a Bandit.",
+                requirements={"selected_class": "Bandit", ("selected_class", "Level"): 150},
+                rewards={"total_souls": 100000}
+            ),
+
+            Quest(
+                name="Patience of the Hunter",
+                description="Level up to 150 as a Hunter.",
+                requirements={"selected_class": "Hunter", ("selected_class", "Level"): 150},
+                rewards={"total_souls": 100000}
+            ),
+
+            Quest(
+                name="Talent of the Sorcerer",
+                description="Level up to 150 as a Sorcerer.",
+                requirements={"selected_class": "Sorcerer", ("selected_class", "Level"): 150},
+                rewards={"total_souls": 100000}
+            ),
+
+            Quest(
+                name="Power of the Pyromancer",
+                description="Level up to 150 as a Pyromancer.",
+                requirements={"selected_class": "Pyromancer", ("selected_class", "Level"): 150},
+                rewards={"total_souls": 100000}
+            ),
+
+            Quest(
+                name="Righteousness of the Cleric",
+                description="Level up to 150 as a Cleric.",
+                requirements={"selected_class": "Cleric", ("selected_class", "Level"): 150},
+                rewards={"total_souls": 100000}
+            ),
+
+            Quest(
+                name="Misery of the Deprived",
+                description="Level up to 150 as a Deprived.",
+                requirements={"selected_class": "Deprived", ("selected_class", "Level"): 150},
+                rewards={"total_souls": 100000}
+            )
+        ]
+        
+        for quest in quests:
+            player.add_quest(quest)
 
     def access_menu(self):
         # Grant user access to main menu 

@@ -11,16 +11,37 @@ class Quest:
         self.completed = False
 
     def check_completion(self, player):
-        # Check if the player meets the requirements to complete the quest
         for requirement, value in self.requirements.items():
             if isinstance(requirement, tuple):
-                # Handle nested attributes or dictionary keys
+                # Nested attribute or dict key, e.g., ("selected_class", "Level")
                 attr, key = requirement
-                if getattr(player, attr)[key] < value:
-                    return False
+                attr_value = getattr(player, attr)
+
+                if isinstance(attr_value, dict):
+                    if attr_value[key] < value:
+                        return False
+                else:
+                    # If not a dict, treat as object attribute
+                    if getattr(attr_value, key) < value:
+                        return False
             else:
-                if getattr(player, requirement) < value:
-                    return False
+                # Direct attribute, e.g., "selected_class"
+                attr_value = getattr(player, requirement)
+
+                if isinstance(attr_value, dict):
+                    # If requirement is a dict, value should be a key to check
+                    # (not used in current quests, but safe to handle)
+                    if value not in attr_value:
+                        return False
+                elif isinstance(attr_value, str):
+                    # Compare string equality (e.g., class name)
+                    if attr_value != value:
+                        return False
+                else:
+                    # Fallback for numeric comparison
+                    if attr_value < value:
+                        return False
+
         self.completed = True
         self.give_rewards(player)
         return True
