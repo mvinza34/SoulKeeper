@@ -110,10 +110,7 @@ _Example image showcasing the immersive CLI experience_
 
 ## **🚀 Future Enhancements**  
 
-Planned improvements include:  
-- Adding **income sources** to simulate salary-like soul earnings.  
-- Implementing more dynamic and engaging **quests** for additional rewards.
-- More complex **random events** with player choices (fight or flee scenarios).  
+No major enhancements planned at this time. Suggestions welcome!
 
 ## **❓ FAQ**  
 
