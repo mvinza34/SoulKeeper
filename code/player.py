@@ -7,6 +7,8 @@ import settings
 from rich.console import Console # For console output (i.e., colors, emojis, etc.)
 from rich.table import Table # For creating tables in the console
 
+from quest import Quest 
+
 console = Console()
 
 class Player:
@@ -339,9 +341,11 @@ class Player:
     def save_progress(self, filename="save.json"):
         data = {
             "name": self.name,
+            "quests": [q.quests_to_dict() for q in self.quests], # JSON serializable representation of quests
             "achievements": self.achievements,
             "total_souls": self.total_souls,
             "total_souls_spent": self.total_souls_spent,
+            "souls_spent_per_attribute": self.souls_spent_per_attribute,
             "selected_class": self.starting_class_name,
             "attributes": self.selected_class
         }
@@ -351,17 +355,22 @@ class Player:
         console.print("Progress saved!\n")
 
     def load_progress(self, filename="save.json"):
-        # Reads the JSON file and loads the saved progress so that the player can pick up where they left off
-        with open(filename, 'r') as f:
-             data = json.load(f)
-             self.name = data["name"]
-             self.achievements = data.get("achievements", self.achievements)
-             self.total_souls = data["total_souls"]
-             self.total_souls_spent = data["total_souls_spent"]
-             self.starting_class_name = data["selected_class"]
-             self.selected_class = data["attributes"]
-             self.check_for_class = True
-        console.print("Progress loaded!\n")
+        if os.path.exists("save.json"):
+            # Reads the JSON file and loads the saved progress so that the player can pick up where they left off
+            with open(filename, 'r') as f:
+                 data = json.load(f)
+                 self.name = data["name"]
+                 self.quests = [Quest.quests_from_dict(q) for q in data.get("quests", [])] # No comma so self.show_quests() works properly
+                 self.achievements = data.get("achievements", self.achievements)
+                 self.total_souls = data["total_souls"]
+                 self.total_souls_spent = data["total_souls_spent"]
+                 self.souls_spent_per_attribute = data.get("souls_spent_per_attribute", self.souls_spent_per_attribute)
+                 self.starting_class_name = data["selected_class"]
+                 self.selected_class = data["attributes"]
+                 self.check_for_class = True
+            console.print("Progress loaded!\n")
+        else:
+            console.print("The file does not exist!\n")
 
     def delete_progress(self):
         # Erases the json file so that the player can start new
